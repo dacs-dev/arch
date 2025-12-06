@@ -1,0 +1,132 @@
+/* === Tokyo Night Waybar theme (vertical) === */
+
+@define-color bg #1a1b26;
+@define-color fg #c0caf5;
+@define-color accent #7aa2f7;
+@define-color accent_op #1f2242;
+@define-color urgent #f7768e;
+@define-color muted #565f89;
+
+* {
+  font-family: "FiraCode Nerd Font Mono";
+  font-size: 11px;
+  color: @fg;
+  
+}
+
+#custom-power {
+    border-radius: 15px;
+    background: none;
+    color: @accent;
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+menuitem {
+    border-radius: 15px;
+}
+
+window#waybar {
+  background: @bg;
+  border: 2px solid @accent;
+  border-radius: 10px;
+}
+
+.modules-left, .modules-right, .modules-center {
+  margin: 8px;
+}
+.modules-left
+{
+ margin-top: 5px;
+}
+
+#battery{
+	font-size: 15px;
+}
+#pulseaudio, #custom-network
+{
+ font-size: 25px;
+}
+/* Workspaces */
+#workspaces button {
+  background: none;
+  color: @fg;
+  border: none;
+  margin-bottom: 5px;
+  
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+#workspaces button.focused {
+  background: @accent;
+  color: #1a1b26;
+}
+
+#workspaces button:hover,  #custom-power:hover {
+  background: @muted;
+}
+
+#workspaces button.urgent {
+  background: @urgent;
+}
+
+#custom-memory-icon{
+  margin-bottom: -3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 6px 6px 0px 0px;
+  color: @accent;
+  font-size: 30px;
+}
+
+/* Clock, battery, etc. */
+#clock, #memory, #battery, #pulseaudio, #network, #temperature, #cpu, #custom-memory-icon {
+
+ 
+  border-radius: 6px;
+  background: none;
+ 
+  
+}
+#cpu, #temperature{
+
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#network:hover, #clock:hover {
+  background: @muted;
+  
+}
+
+#memory{
+  margin-top: -3px;
+  border-radius:   0px 0px 6px 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#clock{
+  margin-top: 15px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#custom-clock-icon {
+
+}
+
+#network {
+  color: @accent;
+  font-size: 30px;
+
+}
+
+/* Tooltip */
+tooltip {
+  background: @bg;
+  border: 1px solid @accent;
+  border-radius: 5px;
+}

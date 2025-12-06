@@ -1,0 +1,168 @@
+{
+  "layer": "top",
+  "position": "left",
+  "orientation": "vertical",
+  //"width": 40,
+
+  "modules-left": ["custom/power", "hyprland/workspaces", "custom/notes"],
+  "modules-center": [
+    "cpu",
+    "temperature",
+    "custom/memory-icon",
+    "memory",
+    "clock",
+  ],
+  "modules-right": ["custom/network", "pulseaudio", "battery", "tray"],
+  "justify": "center",
+
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "all-outputs": true,
+  },
+
+  "custom/clock-icon": {
+    "exec": "~/.config/waybar/scripts/clock_icon_render.sh",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "~/.config/waybar/scripts/clock_icon_toggle.sh",
+    "on-click-right": "~/.config/waybar/scripts/clock_icon_toggle.sh",
+  },
+  "custom/memory-icon": {
+    "format": "",
+  },
+  "cpu": {
+    "justify": "center",
+
+    "interval": 2,
+    "format": "  {usage}%",
+    "format-alt": "  {avg_frequency} GHz",
+    "max-length": 10,
+    "on-click": "kitty -e btop",
+    "tooltip": true,
+    "tooltip-format": "CPU Usage: {usage}%\nAvg Frequency: {avg_frequency} GHz\nCores: {load}",
+  },
+  "temperature": {
+    "justify": "center",
+
+    "thermal-zone": 2,
+    "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+    "critical-threshold": 80,
+    "format-critical": " {temperatureC}°C",
+    "format": " {temperatureC}°C",
+    "interval": 2,
+    "on-click": "kitty -e watch sensors",
+    "tooltip": true,
+    "tooltip-format": "CPU Temperature: {temperatureC}°C",
+  },
+  "memory": {
+    "justify": "center",
+    "interval": 30,
+    "format": "{used:02.1f}G\n<span foreground='#7aa2f7'>━</span>\n{total:02.1f}G",
+    "markup": true,
+  },
+  "clock": {
+    "justify": "center",
+    "format": "{:%H\n\n%M}",
+    "format-alt": "{:%A, %B %d, %Y (%R)}",
+    "tooltip-format": "<tt><big>{calendar}</big></tt>",
+    "actions": {
+      "on-click": "toggle",
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down",
+    },
+    "calendar": {
+      "mode": "month",
+      "on-scroll": 1,
+
+      "format": {
+        "months": "<span color='#2ac3de'><b>{}</b></span>", // Titles (cyan)
+        "weekdays": "<span color='#c0caf5'><b>{}</b></span>", // Mon—Sun labels
+        "days": "<span color='#c0caf5'>{}</span>", // Normal days
+        "weeks": "<span color='#e0af68'><b>{}</b></span>", // Week numbers (yellow)
+        "today": "<span color='#bb9af7'><b><u>{}</u></b></span>", // Today (purple)
+        "saturday": "<span color='#f7768e'>{}</span>", // Saturday (red)
+        "sunday": "<span color='#f7768e'>{}</span>", // Sunday (red)
+      },
+    },
+  },
+
+  /* "clock": {
+  "markup": true,
+
+  //"format": "<span foreground='cyan'>Línea1\nLínea2</span>",
+  "format": "<span>{:%H:%M\n%d/%m}</span>",
+  "tooltip": false
+  "menu": "on-click",
+        "menu-file": "~/.config/waybar/menus/center_menu.xml",
+        "menu-actions": {
+            "shutdown": "shutdown",
+            "reboot": "reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate",
+        }
+}, */
+/*   "network": {
+    "format-ethernet": "󰛳",
+    "format-wifi": "{icon}",
+    "tooltip-format": "{ifname}\nIP: {ipaddr}\nVelocidad: {bandwidthUpBits}↑ {bandwidthDownBits}↓",
+    "format-icons": {
+      "wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+      "disconnected": "󰤭",
+    },
+    "on-click": "~/.config/waybar/scripts/network_menu.sh",
+  }, */
+  "custom/network": {
+    "exec": "~/.config/waybar/scripts/custom_network.sh",
+    "interval": 30,
+    "format": "{text}",
+    "on-click": "~/.config/waybar/scripts/network_menu.sh",
+    "return-type": "json",
+    "tooltip-format": "{tooltip}"
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "",
+    "format-icons": {
+      "default": ["", "", ""],
+    },
+    "tooltip": false,
+    "on-click": "pavucontrol",
+  },
+  "custom/bluetooth": {
+    "format": "",
+    "exec": "bluetoothctl show | grep -q 'Powered: yes' && echo '' || echo '󰂲'",
+    "interval": 5,
+    "on-click": "blueman-manager",
+  },
+  "custom/notes": {
+    "format": "📝",
+    "on-click": "pynotes",
+    "tooltip": true,
+    "tooltip-format": "Tokyo Night Notes",
+  },
+  "custom/power": {
+    "justify": "center",
+    "format": "󰐥",
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "~/.config/waybar/menus/power_menu.xml",
+    "menu-actions": {
+      "shutdown": "shutdown now",
+      "reboot": "reboot now",
+      "suspend": "systemctl suspend",
+      "hibernate": "systemctl hibernate",
+    },
+  },
+
+  "battery": {
+    "format": "{capacity}%",
+    "format-charging": " {capacity}%",
+    "tooltip": false,
+  },
+
+  "tray": {
+    "icon-size": 25,
+  },
+}
