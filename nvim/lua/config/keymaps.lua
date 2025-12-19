@@ -97,3 +97,42 @@ map("n", "<C-d>", "<C-d>zz", opts)
 map("n", "<C-u>", "<C-u>zz", opts)
 map("n", "n", "nzzzv", opts)
 map("n", "N", "Nzzzv", opts)
+
+-- ============================================
+-- NAVEGACIÓN ENTRE TABS (PESTAÑAS)
+-- ============================================
+
+-- Alt+Left/Right para cambiar tabs (como navegador)
+map("n", "<A-Left>", "gT", opts)   -- Alt+← = Tab anterior
+map("n", "<A-Right>", "gt", opts)  -- Alt+→ = Tab siguiente
+
+-- Alt+1/2/3/4 para ir a tab específica (como en navegadores)
+map("n", "<A-1>", "1gt", opts)
+map("n", "<A-2>", "2gt", opts)
+map("n", "<A-3>", "3gt", opts)
+map("n", "<A-4>", "4gt", opts)
+map("n", "<A-5>", "5gt", opts)
+
+-- Leader + t + acción (Space + t + algo)
+map("n", "<leader>tn", "<cmd>tabnew<cr>", opts)       -- Space+tn = Nueva tab
+map("n", "<leader>tc", "<cmd>tabclose<cr>", opts)     -- Space+tc = Cerrar tab
+map("n", "<leader>to", "<cmd>tabonly<cr>", opts)      -- Space+to = Cerrar otras tabs
+map("n", "<leader>tl", "<cmd>tablast<cr>", opts)      -- Space+tl = Última tab
+map("n", "<leader>tf", "<cmd>tabfirst<cr>", opts)     -- Space+tf = Primera tab
+
+
+-- ============================================
+-- SALIR DE NEOVIM MÁS RÁPIDO
+-- ============================================
+
+-- Ctrl+Q = Salir (guarda si hay cambios, pregunta si hay sin guardar)
+map("n", "<C-q>", "<cmd>confirm quit<cr>", opts)
+
+-- Leader+q = Salir sin guardar (forzado)
+map("n", "<leader>q", "<cmd>q! <cr>", opts)
+
+-- Leader+Q = Salir de TODO (cerrar Neovim completamente)
+map("n", "<leader>Q", "<cmd>qa! <cr>", opts)
+
+-- Ctrl+Shift+Q = Guardar todo y salir
+map("n", "<C-S-q>", "<cmd>wqa<cr>", opts)

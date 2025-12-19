@@ -1,6 +1,10 @@
 -- Opciones generales de Neovim
 local opt = vim.opt
 
+-- Desactivar Netrw (explorador nativo de Vim)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Apariencia
 opt.number = true                -- Números de línea
 opt.relativenumber = true        -- Números relativos
